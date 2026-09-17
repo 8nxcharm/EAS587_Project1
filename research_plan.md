@@ -8,7 +8,7 @@
 
 **Date Created:** 9/16/2026
 
-**Last Updated:**9/17/2026
+**Last Updated:** 9/17/2026
 
 **Github Repository**: https://github.com/8nxcharm/EAS587_Project1
 
@@ -31,11 +31,16 @@ Supporting Questions:
 
 ## Section 2. Background and Motivation
 
+Uber's expansion in New York City began around 2014 paired with the sharp taxi decline. During this period the average daily trips for taxis had fallen between the interval of April 2014 to 2015. Also yellow taxis were 
+providing 10's of thousands of less trips per day by the start of 2016. On the other hand, Uber's fleet of drivers had almost tripled by early 2016. This severely affected medallion owners whose assets had virtually collapsed onto them 
+in this short period of time. 
 
+What is less settled at this point is weather this represents a permanent ride-hailing dominance or if present day shows a partially rebalanced market. 2024 TLC data shows some sings of taxi recovery, which complicates the presented 
+narrative. Most of exsisting work focuses on only the 2014-2016 disruption without any comparison to the present-day conditions. This project aims to contribute a direct comparison across both periods instead of a single snapshot of time. 
+This would be very relevant to policymakers that are weighing driver pay rules, overcrowding pricing and the cap of vehicles that are allowed to be on the road.
 
 
 ## Section 3. Research Objectives and Scope
-
 
 
 
@@ -46,7 +51,10 @@ Supporting Questions:
 
 ## Section 5. Supporting Data and Resources
 
-
+The primary dataset that we will be using is the NYC TLC Trip Record Data. Inside this dataset there are records for Yellow Taxi, Green Taxi, and HVFHV (Uber/Lyft). This dataset is publicly available for download as monthly Parquet files. 
+A single month for the HVFHV data alone exceeds our 250k-record min. and combined with sampled months we will exceed the 10 GB memory threshold. In the TLC data there is also a Taxi Zone Lookup table that can help us with identifying long costly 
+trips like rides to the airport. Same with the trip record data there is no constraint to the access. At this time we expect to be using Python (pandas and more) and DuckDB for querying the Parquet without loading the whole set. Along with Jupyter/VS code 
+and of course GitHub.
 
 
 ## Section 6. Risks, Constraints, Assumptions
