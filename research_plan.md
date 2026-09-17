@@ -31,7 +31,7 @@ Supporting Questions:
 
 ## Section 2. Background and Motivation
 
-Uber's expansion in New York City began around 2014 paired with the sharp taxi decline. During this period the average daily trips for taxis had fallen between the interval of April 2014 to 2015. Also yellow taxis were 
+Uber's expansion in New York City began around 2014 and this paired with the sharp taxi decline. During this period the average daily trips for taxis had fallen between April 2014 to 2015. Also, yellow taxis were 
 providing 10's of thousands of less trips per day by the start of 2016. On the other hand, Uber's fleet of drivers had almost tripled by early 2016. This severely affected medallion owners whose assets had virtually collapsed onto them 
 in this short period of time. 
 
@@ -64,4 +64,17 @@ and of course GitHub.
 
 ## Section 7. Research Approach Tasks and Timeline
 
+Weeks 1-4:
+
+  - Week 1: Finalize the scope of the project, verification of the access to the dataset, inspecting sample months for all of the differnt ride types, set up GitHub.
+  - Week 2: We will need to select the final sampling months across both of our chosen time periods. Build out data_access.py and data_sampling.py
+  - Week 3: Align the fare fields across all of the datasets so we can compare, run data quality checks
+  - Week 4: Begin EDA
+
+
+Weeks 5-12:
+
+  - Week 5-8: Complete EDA; build visualizations and prepare for Phase 2 Presentation
+  - Week 9-10: Move pipeline to Apache Spark possibly for distributed processing, also add in factors like weather or holidays which could affect data.
+  - Week 11-12: Finalize analysis, put together all of our findings and prepare for the final presentation
 
