@@ -42,9 +42,14 @@ This would be very relevant to policymakers that are weighing driver pay rules, 
 
 ## Section 3. Research Objectives and Scope
 
-
+The specific objectives of the project is to see the initial and long term impact forhire services had on the traditional cab services in NYC. The expected outcome we are looking for is a clear indication that when the forhire services are introduced into the economy there was a dip in the use of traditional cabs. The project will address the trip amount of each type of cab service and compare them. During this project we will not try to attempt to see if things like city wide events affect the use of certain services vs others. 
 
 ## Section 4. Prior Research and References
+https://thelittledataset.com/2015/03/30/the-rise-of-the-new-kind-of-cabbie-a-comparison-of-uber-and-taxi-drivers/ - This reference uses race of drivers as a dataset to compare cab services and we will not put race into our project as the race of drivers doesnt matter.
+https://blogs.pugetsound.edu/econ/2015/10/06/uber-vs-taxis-in-new-york-city/ - This reference uses specific data from certain districts within NYC which is someone we might touch on. 
+https://www.smartcitiesdive.com/ex/sustainablecitiescollective/how-much-market-share-are-new-york-s-yellow-cabs-losing-uber/1169427/ - This reference uses similar data with us to show that uber had an impact on yellow cabs during the specific time frames we wanted to use also.
+https://www.investopedia.com/articles/personal-finance/021015/uber-versus-yellow-cabs-new-york-city.asp - This reference brakes down the specific types of uber rides users can order but we in this project will just look at uber trips as a whole not the specific package types.
+https://nymag.com/intelligencer/2016/01/uber-is-making-nyc-cab-drivers-nicer.html - This reference details the emotional impact for hire cars are having on yellow back but we arent looking into the emotional side of this data. 
 
 
 
@@ -59,7 +64,7 @@ and of course GitHub.
 
 ## Section 6. Risks, Constraints, Assumptions
 
-
+The project could see delays if we decide to switch the time frames for which we pull data from, and specifically if we change this time frame too late. When analyzing the data if we don't reach our foreseen objective we might have to pivot to a different time frame of years to show what we already have an idea happened to the cab services in NYC. 
 
 
 ## Section 7. Research Approach Tasks and Timeline
