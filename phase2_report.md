@@ -34,6 +34,11 @@ Compared to Phase 2, one thing has changed. The plan before was to compare 2014-
 
 ## 7. Design Decisions
 
+| Decision | Alternatives Considered | Rationale |
+| --- | --- | --- |
+| Read in chunks with pyarrow, then sample. | DuckDB, Loading the whole file, or using a database. | Only a single month for Uber/Lyft is around 2 GBs worth of data, and would've been around 11 GBs for all of them. So loading the entire files would let us not be able to scale effectively. Pandas is also simple and easier to check and explain. |
+| Choose fixed limits, and remove data that went against them. | Capping, keeping outliers, IQR or z-score. | Since the fares are skewed, the alternative methods would get rid of actual data that we would need. |
+| Counting the clean rows before sampling, and using raw rows for counts and shares. | Count after sampling | The log has exact counts, if we counted after sampling it would distort the actuality of the data, especially with the Uber/Lyft files. |
 
 ## 8. Reproducibility Statement
 
