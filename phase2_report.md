@@ -18,6 +18,8 @@ Compared to Phase 2, two thing has changed. The plan before was to compare 2014-
 
 ### 3.1 Data profiling
 
+The profile step for our project (profile_file()) reads every single column of each file in chunks of 1,000,000 rows. The counts of rows, minimums, maximums, percent missing and duplicates are exact totals for every single row. The missing values, unique values, data types and quartiles by specific vendors are estimated from a selected 1% sample of each of the chunks. An example of this is the Uber & Lyft data of June 2019 where there are 21,001,990 rows and 24 columns. The missing values are systematic: the airport_fee was missing in all of the rows, and on_scene_datetime and originating_base_num in 28.23% of the data, also almost all of it from two fo the licences (HV0004 & HV0005, against 0% missing for HV0002 & HV0003), so we choose to not fill in these columns. On top of this the file happens to hold impossible values like fares that are negative, extremely long trips and trip times and on_scene_datetime that for example were from 1970. There were also around 1,500 duplicate rows.
+
 ### 3.2 Cleaning and transformation
 
 ### 3.3 Scalable processing
