@@ -31,6 +31,13 @@ Compared to Phase 2, two thing has changed. The plan before was to compare 2014-
 
 ## 6. Dead Ends
 
+The 2014 to 2016 comparison. Originally our plan assumed that we could compare the breakout years of Uber with the present day. After looking through the TLC files, unfortunately the Uber/Lyft data that is usable starts in 2019, so we have to reframe the comparison to the years 2019,2024, and 2025. From this we learned that checking what data actually exists before creating a fixed time frame around the plan. With that said, we also learned that the proposed research questions should generally be able to survive a change in data, which was true for our scenario.
+
+Blaming the $2.50 minimum fare. After analyzing the cleaning log we were able to see that some files lost a lot of rows due to our fare rule set in place (as high as ~12%), and our first assumption about this was that the minimum fare was too high for Uber & Lyft rides. This was then tested against the raw fares and found that there were almost no rides between $0 and $2.50. The actual cause was due to negative fares in yellow taxis and $0 fares in Uber &Lyft. We learned from this that testing a cleaning rule against the raw data before you try and alter it, instead of assuming that there is a problem with the threshold.
+
+Explaining the 0$ fares. To explain the $0 fare trips in august of 2019 we compared it with normal trips and this showed that they look like real trips. However the data could not tell us why the fare is actually missing. We decided to stop there and report it as an open question instead of creating a poor-backed up reason that could be incorrect. In the next phase we will try and get to the bottom of this. We learned that the data can show us what a problem looks like without giving us a causation for it.
+
+[ADD YOUR DEAD ENDS HERE @TES]
 
 ## 7. Design Decisions
 
