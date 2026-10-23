@@ -146,11 +146,9 @@ def process_file(path, service, month, sample_frac=1.0):
         df = chunk.to_pandas()
         rows_raw += len(df)
         n_chunks += 1
-
         chunk_mb = df.memory_usage(deep=True).sum() / 1_000_000
         max_chunk_mb = max(max_chunk_mb, chunk_mb)
         total_mb += chunk_mb
-
         df = clean_chunk(df, service, month, removed)
         rows_clean += len(df)              # exact count, before we sample
         fare_total += df["fare"].sum()
