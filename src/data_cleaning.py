@@ -66,7 +66,7 @@ def profile_file(path, service):
                        "q1", "median", "q3", "max", "most_common"]]
     profile = profile.reindex(sample.columns).rename_axis("column").reset_index()   # keep file order
 
-    vendor = "hvfhs_license_num" if service == "fhvhv" else "VendorID"                          # is the missing data random or systematic? % missing for each vendor
+    vendor = "hvfhs_license_num" if service == "fhvhv" else "VendorID"                          # % missing for each vendor
     by_vendor = sample.drop(columns=vendor).isna().groupby(sample[vendor]).mean() * 100
     by_vendor = by_vendor.loc[:, by_vendor.sum() > 0].round(2)
     by_vendor.insert(0, "n_rows_in_sample", sample[vendor].value_counts())
@@ -88,7 +88,7 @@ def clean_chunk(df, service, month, removed):
     else:
         df["carrier"] = service.capitalize()
 
-    for col in ["pickup_time", "dropoff_time"]:                                         # data types (errors="coerce" converts bad into missing values)
+    for col in ["pickup_time", "dropoff_time"]:                                         # data types 
         df[col] = pd.to_datetime(df[col], errors="coerce")
     for col in ["distance", "fare", "pu_zone", "do_zone"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
@@ -135,7 +135,7 @@ def process_file(path, service, month, sample_frac=1.0):
     wanted = list(COLUMN_MAP[service])
     for col in wanted:
         if col not in parquet_file.schema_arrow.names:
-            raise ValueError(f"{path} is missing the column {col}. Is it a 2017+ file?")
+            raise ValueError(f"{path} is missing the column {col}?")
 
     removed = {}
     pieces = []
