@@ -26,14 +26,14 @@ The clean_chunk() function applies the eight set rules in a fixed order, and a s
 
 | # | Rule | A row is kept only if |
 | --- | --- | --- |
-| 1 | Missing value | Dropoff, pickup, distrance, fare and both zones all exist |
+| 1 | Missing value | Dropoff, pickup, distance, fare and both zones all exist |
 | 2 | Pickup outside month | The pickup is inside the file’s month |
-| 3 | Dropoff not after pickup | The dropoff is after (later) the pick |
+| 3 | Dropoff not after pickup | The dropoff is after (later) the pickup |
 | 4 | Duration out of range | The trip must be between 1 to 180 minutes |
 | 5 | Distance out of range | The trip distance needs to be above 0 to 100 miles |
 | 6 | Fare out of range | The fare needs to be between $2.50 and $500 |
 | 7 | Invalid zone | Both zones are 1 to 263 (the last two mean an unknown zone) |
-| 8 | duplicate | It is the first copy of the row |
+| 8 | Duplicate | It is the first copy of the row |
 
 We choose to drop rows that had missing key values instead of trying to impute them, this is because attempting to impute them would invent trip properties that didn't exist. To deal with outliers we choose to use fixed limits rather than IQR or z-scores, this is because fares are very skewed and longer trips like airport trips are real and we don't want them removed. We also remove outliers instead of setting a cap, this is because some of the trip properties don't have a true value to be capped at. All of the services get the same column names for consistency, this is done with licence codes that are mapped to carriers. We also added seven new columns: carrier, month, service, hour, duration_min, fare_per_mile and airport_trip. The result of this is 13 columns instead of the original 24 for Uber & Lyft.
 
@@ -41,6 +41,16 @@ Using the same example previously mentioned, June of 2019 for Uber and Lyft, cle
 
 ### 3.3 Scalable processing
 
+One of the Uber/Lyft would need about 2,163 MBs in memory for only the columns we choose to use, and this would total up to 11,557 MBs with all 24 files. So we choose to read each file independently in chunks of 1,000,000 rows with pyarrow and then only keep the needed columns. Each chunk is first cleaned, the cleaned rows are then counted, and after this is done a random sample is logged before the next chunk gets read. Choosing to count before sampling keeps the row counts and the fare average in the log exact. Overall we kept 10% of the yellow taxi data, 3% of UBER/Lyft and 100% of the green taxi data. This was done using simple random sampling with a fixed seed, not using stratified sampling.
+
+| Measure | Result |
+| --- | --- |
+| Largest chunk in memory | Uber & Lyft 2019: 103 MB, Uber & Lyft 2025: 95 MB, Yellow: 48 MB |
+| Runtime for all 27 files | About 5 minutes |
+| Smallest saved samples | 282,235 rows (Yellow) and 512,713 rows (Uber & Lyft) |
+| Sample check | Sample mean fare was within $0.06 of the exact mean for every file |
+
+The sampling has limits. The way that we engineered this has a minor flaw of only finding duplicates that are inside one single chunk, not comparing separate chunks for duplicates. The 1% sample can also miss small vendors, and the simple random sampling could leave a possibility of small groups being thin. Also the green taxi files from 2024 and 2025 had only 46,000 to 55,000 rows, so we choose to just keep them whole because they fall well below the 250,000-row guideline.
 
 ## 4. Exploratory Data Analysis
 
