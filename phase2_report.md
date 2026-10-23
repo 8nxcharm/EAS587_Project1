@@ -46,3 +46,6 @@ Compared to Phase 2, one thing has changed. The plan before was to compare 2014-
 
 
 ## 9. References
+
+1. Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
+2. NYC Taxi and Limousine Commission. TLC Trip Record Data. https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
