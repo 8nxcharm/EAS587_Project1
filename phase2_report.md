@@ -80,6 +80,7 @@ Explaining the 0$ fares. To explain the $0 fare trips in august of 2019 we compa
 
 ## 8. Reproducibility Statement
 
+To be able to reproduce our results, install all of the necessary packages with `pip install -r requirements.txt` and run the command `python -m src.pipeline --download` from the root folder of the project. This will then download the 27 raw files, clean and sample them, and save the results in `data/processed/`. The EDA and first analytics are not a part of the pipeline at this time so you will need to run them separately afterwards, `src/eda.py` and `src/analytics.py`. All of the sampling uses the fixed see 587, so the results that were seen in the report will repeat. We ran the full pipeline on a desktop PC in Visual Studio, as mentioned before the cleaning/sampling took around 5 minutes and the EDA and first analytics then finished in seconds. 
 
 ## 9. References
 
