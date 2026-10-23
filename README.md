@@ -16,10 +16,11 @@ and 2025 (27 monthly files), and we compare fares, trip share and airport trips 
 ## Folders
 
 - `src/`: all code (`data_access.py`, `data_cleaning.py`, `pipeline.py`, `eda.py`, `analytics.py`)
-- `data/raw/`: downloaded TLC files
-- `data/processed/`: cleaned samples, profile files and `cleaning_log.csv`
 - `research_plan.md`: Phase 1 plan
 - `phase2_report.md`: Phase 2 report
+- `data/`: not included in the repo. The pipeline creates it when you run it:
+  - `data/raw/` is created by `--download` and holds the downloaded TLC files.
+  - `data/processed/` is created by the pipeline and holds the cleaned samples, profile files and `cleaning_log.csv`.
 
 ## Notes
 
