@@ -40,6 +40,8 @@ Compared to Phase 2, one thing has changed. The plan before was to compare 2014-
 | Choose fixed limits, and remove data that went against them. | Capping, keeping outliers, IQR or z-score. | Since the fares are skewed, the alternative methods would get rid of actual data that we would need. |
 | Counting the clean rows before sampling, and using raw rows for counts and shares. | Count after sampling | The log has exact counts, if we counted after sampling it would distort the actuality of the data, especially with the Uber/Lyft files. |
 
+[ADD YOUR DESIGN DECISIONS HERE HERE @TES]
+
 ## 8. Reproducibility Statement
 
 
