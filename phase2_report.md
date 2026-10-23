@@ -22,6 +22,23 @@ The profile step for our project (profile_file()) reads every single column of e
 
 ### 3.2 Cleaning and transformation
 
+The clean_chunk() function applies the eight set rules in a fixed order, and a single row is counted under the condition of the first rule that row breaks. The removal is then logged into the file cleaning_log.csv.
+
+| # | Rule | A row is kept only if |
+| --- | --- | --- |
+| 1 | Missing value | Dropoff, pickup, distrance, fare and both zones all exist |
+| 2 | Pickup outside month | The pickup is inside the file’s month |
+| 3 | Dropoff not after pickup | The dropoff is after (later) the pick |
+| 4 | Duration out of range | The trip must be between 1 to 180 minutes |
+| 5 | Distance out of range | The trip distance needs to be above 0 to 100 miles |
+| 6 | Fare out of range | The fare needs to be between $2.50 and $500 |
+| 7 | Invalid zone | Both zones are 1 to 263 (the last two mean an unknown zone) |
+| 8 | duplicate | It is the first copy of the row |
+
+We choose to drop rows that had missing key values instead of trying to impute them, this is because attempting to impute them would invent trip properties that didn't exist. To deal with outliers we choose to use fixed limits rather than IQR or z-scores, this is because fares are very skewed and longer trips like airport trips are real and we don't want them removed. We also remove outliers instead of setting a cap, this is because some of the trip properties don't have a true value to be capped at. All of the services get the same column names for consistency, this is done with licence codes that are mapped to carriers. We also added seven new columns: carrier, month, service, hour, duration_min, fare_per_mile and airport_trip. The result of this is 13 columns instead of the original 24 for Uber & Lyft.
+
+Using the same example previously mentioned, June of 2019 for Uber and Lyft, cleaning removed 3.85% of the rows, and around 600,000 were saved after sampling. Across all of the 27 files, it removed between 2.77% and 15.08% of rows. The places where the largest losses were seen are from $0 fares in Uber & Lyft  in 2019 and negative fares in yellow 2025. In the month of August in 2019 all 2,30,267 of the zero dollar fare trips are from Uber, and their median duration and distance are pretty close to normal trips, so it makes these look like actual trips with a missing fare. As of now we don't have a rationale behind this, so we choose to use raw_rows that were logged for the trip counts and shares.
+
 ### 3.3 Scalable processing
 
 
