@@ -79,7 +79,7 @@ Explaining the 0$ fares. To explain the $0 fare trips in august of 2019 we compa
 | Choose fixed limits, and remove data that went against them. | Capping, keeping outliers, IQR or z-score. | Since the fares are skewed, the alternative methods would get rid of actual data that we would need. |
 | Counting the clean rows before sampling, and using raw rows for counts and shares. | Count after sampling | The log has exact counts, if we counted after sampling it would distort the actuality of the data, especially with the Uber/Lyft files. |
 |Log scaled histogram for distances | Standard linear histogram | We used a log scale instead of a linear plot to handle heavily right-skewed trip distances.| 
-| Hex-bin density for Fare vs. Distance | Standard scatterplot | We used hex-bins over standard scatterplots to prevent extreme overplotting with millions of data points. |
+| Hex-bin density for fare vs distance | Standard scatterplot | We used hex-bins over standard scatterplots to prevent extreme overplotting with millions of data points. |
 | Comparing taxi pricing using medians |  Using averages | We evaluated pricing using medians rather than averages.|
 
 ## 8. Reproducibility Statement
