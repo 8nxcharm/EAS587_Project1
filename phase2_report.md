@@ -78,8 +78,9 @@ Explaining the 0$ fares. To explain the $0 fare trips in august of 2019 we compa
 | Read in chunks with pyarrow, then sample. | DuckDB, Loading the whole file, or using a database. | Only a single month for Uber/Lyft is around 2 GBs worth of data, and would've been around 11 GBs for all of them. So loading the entire files would let us not be able to scale effectively. Pandas is also simple and easier to check and explain. |
 | Choose fixed limits, and remove data that went against them. | Capping, keeping outliers, IQR or z-score. | Since the fares are skewed, the alternative methods would get rid of actual data that we would need. |
 | Counting the clean rows before sampling, and using raw rows for counts and shares. | Count after sampling | The log has exact counts, if we counted after sampling it would distort the actuality of the data, especially with the Uber/Lyft files. |
-
-| We used a log scale instead of a linear plot to handle heavily right-skewed trip distances.| We used hex-bins over standard scatterplots to prevent extreme overplotting with millions of data points. | We evaluated pricing using medians rather than averages.
+|Log scaled histogram for distances | Standard linear histogram | We used a log scale instead of a linear plot to handle heavily right-skewed trip distances.| 
+| Hex-bin density for Fare vs. Distance | Standard scatterplot | We used hex-bins over standard scatterplots to prevent extreme overplotting with millions of data points. |
+| Comparing taxi pricing using medians |  Using averages | We evaluated pricing using medians rather than averages.|
 
 ## 8. Reproducibility Statement
 
