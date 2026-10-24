@@ -4,7 +4,7 @@ Aidan Collins, Teslim Carew
 
 ## 1. Executive Summary
 
-This project's purpose is to ask the question of how New York City’s for-hire vehicle market has ultimately shifted from traditional taxis to ride-sharing companies such as Uber & Lyft, and whether the data supports the popular claim that ride-sharing has become the dominant option. For our Phase 2 section of the project our team has built a pipeline that profiles, cleans and samples the NYC TLC trip files. Specifically we use 27 trip files from green, yellow and Uber/Lyft for June through August in the years 2019, 2024, and 2025. There are around 221 million raw trips in total so the data amount is plentiful. The data needed to be cleaned carefully and most of the loss came from $0 fare in Uber/Lyft in 2019 as well as from negative fares from the yellow taxis in 2025, which we could not explain at this moment. This really matters to the project because it will limit how trip counts and fares can/will be compared across years. [ADD IN MAIN FINDINGS FROM SEC. 4 & 5 HERE @TES]
+This project's purpose is to ask the question of how New York City’s for-hire vehicle market has ultimately shifted from traditional taxis to ride-sharing companies such as Uber & Lyft, and whether the data supports the popular claim that ride-sharing has become the dominant option. For our Phase 2 section of the project our team has built a pipeline that profiles, cleans and samples the NYC TLC trip files. Specifically we use 27 trip files from green, yellow and Uber/Lyft for June through August in the years 2019, 2024, and 2025. There are around 221 million raw trips in total so the data amount is plentiful. The data needed to be cleaned carefully and most of the loss came from $0 fare in Uber/Lyft in 2019 as well as from negative fares from the yellow taxis in 2025, which we could not explain at this moment. This really matters to the project because it will limit how trip counts and fares can/will be compared across years. When running this cleaned data through our pipeline it only more supports our theory that Uber/Lyft permanently took over the for-hire vehicle market. The median fare per mile charge for Yellow Taxis is at about $7.30 while Uber undercuts the market at $6.20. While looking at trip distances we saw a lot of trips fall between the 1-3 mile mark and the 15-20 mile mark and we can confirm that those longer mile trips are airport trips with a locked in flat fare of about $70.  
 
 
 ## 2. Connection to Phase 1
@@ -54,9 +54,12 @@ The sampling has limits. The way that we engineered this has a minor flaw of onl
 
 ## 4. Exploratory Data Analysis
 
+The EDA phase was formed by using Tukey's principles where we focused on trying to reflect the volume and skewness of the taxi dataset as best we could. We used re-expression to apply log scale to the histogram for fare distances so that the extreme values were pulled in and by doing this we saw normal fare distances of 1-3 miles and 15-20 miles being peak distances for fares. A hex-bin plot was used to color map the difference in the fares as the distances increased, and by doing this we were able to identify a airport flat rate fee of $70. We also wanted to evaluate the price differences between each taxi type so we used boxplots focused on the median fare per mile to learn that Uber was leading in undercutting the competition with a fare per mile rate of $6.20 compared to a traditional Yellow Taxi fare per mile of $7.30.
+
 
 ## 5. First Analytics Results
 
+"The Uber Effect" was in full display as we analyzed the calculated market share across the 2019, 2024, and 2025 summer months. We needed to use raw log counts because of a tlc reporting error. In August 2019, 2.3 million valid Uber trips were logged with a $0 fare. The $2.50 minimum fare cleaning rule would have automatically dropped these records which would have been an unexplained loss in Uber ridership for that month. When looking at the 2019 dataset and comparing the 2024 and 2025 analytics we see a lack of recovery for traditional taxis. Where rather than rebounding and stabilizing the market, the Yellow and Green taxi market shares stayed flat and continued to decline into 2025.
 
 ## 6. Dead Ends
 
@@ -66,7 +69,7 @@ Blaming the $2.50 minimum fare. After analyzing the cleaning log we were able to
 
 Explaining the 0$ fares. To explain the $0 fare trips in august of 2019 we compared it with normal trips and this showed that they look like real trips. However the data could not tell us why the fare is actually missing. We decided to stop there and report it as an open question instead of creating a poor-backed up reason that could be incorrect. In the next phase we will try and get to the bottom of this. We learned that the data can show us what a problem looks like without giving us a causation for it.
 
-[ADD YOUR DEAD ENDS HERE @TES]
+2025 negative fares. Over 7% of the Yellow taxi records in August 2025 had negative fare amounts, our first thought was that we could track it and fix it by looking at trip distance but based on the data we could not tell why the taxi meters were recording negative numbers. Without inside information from the TLC about how they handle refunds and meter glitches the cause is impossible to determine. We decided to rely on our cleaning rule filter them out. We learned from this that you cannot always solve a data collection error using the dataset alone, and sometimes the best is to acknowledge an anomaly and exclude it rather than creating a fix for it.
 
 ## 7. Design Decisions
 
@@ -76,7 +79,7 @@ Explaining the 0$ fares. To explain the $0 fare trips in august of 2019 we compa
 | Choose fixed limits, and remove data that went against them. | Capping, keeping outliers, IQR or z-score. | Since the fares are skewed, the alternative methods would get rid of actual data that we would need. |
 | Counting the clean rows before sampling, and using raw rows for counts and shares. | Count after sampling | The log has exact counts, if we counted after sampling it would distort the actuality of the data, especially with the Uber/Lyft files. |
 
-[ADD YOUR DESIGN DECISIONS HERE HERE @TES]
+| We used a log scale instead of a linear plot to handle heavily right-skewed trip distances.| We used hex-bins over standard scatterplots to prevent extreme overplotting with millions of data points. | We evaluated pricing using medians rather than averages.
 
 ## 8. Reproducibility Statement
 
